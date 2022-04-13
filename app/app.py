@@ -17,11 +17,11 @@ def hello_world():
 	else:
 		text = request.form['text']
 		random_name = uuid.uuid4().hex
-		path='static/'+random_name+'.svg'
-		model = load('model.joblib')
+		path='app/static/'+random_name+'.svg'
+		model = load('app/model.joblib')
 		data_input = create_input(text)
-		make_picture('AgesAndHeights.pkl', model,data_input,path)
-		return render_template('index.html', href=path)
+		make_picture('app/AgesAndHeights.pkl', model,data_input,path)
+		return render_template('index.html', href=path[4:])
 
 def make_picture(data, model, new_input, output_file):
 	data = pd.read_pickle(data)
